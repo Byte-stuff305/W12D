@@ -1,0 +1,18 @@
+// Set a cookie
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+}
+
+// Get a cookie
+function getCookie(name) {
+  return document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=');
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r
+  }, '');
+}
+
+// Delete a cookie
+function deleteCookie(name) {
+  setCookie(name, '', -1);
+}
